@@ -9,6 +9,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install pygame pyinstaller
+      - run: python -c "t=open('game.py',encoding='utf-8').read(); old='for b in buildings:\nbx = b[\"rect\"].x - cam_x\nby = b[\"rect\"].y - cam_y\nif bx + b[\"rect\"].width < -50 or bx > WIDTH + 50 or by + b[\"rect\"].height < -50 or by > HEIGHT + 50:\n    continue\npygame.draw.rect(screen, C_SIDEWALK, (bx - 16, by - 16, b[\"rect\"].width + 32, b[\"rect\"].height + 32), border_radius=6)\npygame.draw.rect(screen, b[\"color\"], (bx, by, b[\"rect\"].width, b[\"rect\"].height), border_radius=4)\npygame.draw.rect(screen, b[\"accent\"], (bx + 6, by + 6, b[\"rect\"].width - 12, b[\"rect\"].height - 12), 3, border_radius=3)'; new='for b in buildings:\n    bx = b[\"rect\"].x - cam_x\n    by = b[\"rect\"].y - cam_y\n    if bx + b[\"rect\"].width < -50 or bx > WIDTH + 50 or by + b[\"rect\"].height < -50 or by > HEIGHT + 50:\n        continue\n    pygame.draw.rect(screen, C_SIDEWALK, (bx - 16, by - 16, b[\"rect\"].width + 32, b[\"rect\"].height + 32), border_radius=6)\n    pygame.draw.rect(screen, b[\"color\"], (bx, by, b[\"rect\"].width, b[\"rect\"].height), border_radius=4)\n    pygame.draw.rect(screen, b[\"accent\"], (bx + 6, by + 6, b[\"rect\"].width - 12, b[\"rect\"].height - 12), 3, border_radius=3)'; open('game.py','w',encoding='utf-8').write(t.replace(old, new))"
       - run: pyinstaller --onefile --windowed game.py
       - uses: actions/upload-artifact@v4
         with:
