@@ -244,7 +244,7 @@ while running:
         pygame.draw.circle(screen, C_WHITE, (px, py), 9)
         pygame.draw.circle(screen, C_NEON_PINK, (px, py), 6)
 
-        for b in buildings:
+    for b in buildings:
         bx = b["rect"].x - cam_x
         by = b["rect"].y - cam_y
         if bx + b["rect"].width < -50 or bx > WIDTH + 50 or by + b["rect"].height < -50 or by > HEIGHT + 50:
